@@ -1,0 +1,69 @@
+<!--
+  Generated template for the MyTeamsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Patient Portal</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="goToLogin()">
+                <ion-icon name="person"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-col">
+    <ion-toolbar color="secondary">
+        <ion-title>Welcome {{name}}</ion-title>
+    </ion-toolbar>
+    <ion-card>
+        <ion-card-header class="card-header">
+            <ion-icon class="pad-right-icon" name="clipboard"></ion-icon>
+            Daily Questionnaire
+        </ion-card-header>
+        <ion-card-content>
+            <div *ngIf="questionnaireDone != null && questionnaireDone == false">
+                You haven't taken your questionnaire today {{name}}
+            </div>
+            <div *ngIf="questionnaireDone">
+                <p>
+                    <ion-icon class="pad-right-icon" *ngIf="questionnaireDone" name="checkmark"></ion-icon>
+                    Completed</p>
+            </div>
+            <div *ngIf="questionnaireDone == null">
+                <p>
+                    <ion-icon class="pad-right-icon" *ngIf="questionnaireDone" name="checkmark"></ion-icon>
+                    Loading...
+                    <img src="assets/img/loading.gif" style="width:15%;" />
+                </p>
+            </div>
+            <button ion-button full *ngIf="questionnaireDone != null && questionnaireDone == false" (click)="goToQuestionnaire()">
+                Go to Questionnaire
+            </button>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header class="card-header">
+            <ion-icon class="pad-right-icon" name="calendar"> </ion-icon>Lab Tests</ion-card-header>
+        <ion-card-content>
+            <p><span *ngIf= "labtestBool">Next lab test - </span>{{labtests[0]}}</p>
+            <ion-row>
+                <ion-col text-right>
+                    <button ion-button full (click)="goToEvents()" *ngIf= "labtestBool">
+                        More
+                    </button>
+                </ion-col>
+            </ion-row>
+
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

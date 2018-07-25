@@ -1,0 +1,77 @@
+<!--
+  Generated template for the QuestionnairePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Questionnaire</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="bg-col">
+    <p style="text-align:center;" *ngIf="!questionnaireDone && questionnaireDone != null">How are you feeling today {{name}}?</p>
+    <p style="text-align:center;" *ngIf="questionnaireDone && questionnaireDone != null">You've already submitted for today, thanks {{name}}!</p>
+
+    <ion-grid>
+        <ion-row *ngIf="rating == ''">
+            <ion-col>
+                <img src={{smileys.bad}} (click)="chooseRating('bad')" />
+            </ion-col>
+            <ion-col>
+                <img src={{smileys.medium}} (click)="chooseRating('medium')" />
+            </ion-col>
+            <ion-col>
+                <img src={{smileys.good}} (click)="chooseRating('good')" />
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="rating == 'bad'">
+            <ion-col text-center col-7>
+                <img src={{smileys.bad}} (click)="chooseRating('bad')" />
+            </ion-col>
+            <ion-col>
+                <img src={{smileys.medium}} (click)="chooseRating('medium')" />
+            </ion-col>
+            <ion-col>
+                <img src={{smileys.good}} (click)="chooseRating('good')" />
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="rating == 'medium'">
+            <ion-col>
+                <img src={{smileys.bad}} (click)="chooseRating('bad')" />
+            </ion-col>
+            <ion-col text-center col-7>
+                <img src={{smileys.medium}} (click)="chooseRating('medium')" />
+            </ion-col>
+            <ion-col>
+                <img src={{smileys.good}} (click)="chooseRating('good')" />
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="rating == 'good'">
+            <ion-col>
+                <img src={{smileys.bad}} (click)="chooseRating('bad')" />
+            </ion-col>
+            <ion-col>
+                <img src={{smileys.medium}} (click)="chooseRating('medium')" />
+            </ion-col>
+            <ion-col text-center col-7>
+                <img src={{smileys.good}} (click)="chooseRating('good')" />
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <form (ngSubmit)="showAlert()" #questionForm="ngForm" *ngIf="rating != ''">
+
+        <div *ngIf="!questionnaireDone && questionnaireDone != null">
+            <p style="text-align:center;">Would you like to tell us why you feel that way? You can leave this blank if you prefer.</p>
+            <ion-item style="border-radius:5px;">
+                <ion-textarea [(ngModel)]="explanation" name="explanation" placeholder="Input here"></ion-textarea>
+            </ion-item>
+        </div>
+        <button ion-button full type="submit" [disabled]="questionnaireDone && questionnaireDone != null">submit</button>
+    </form>
+
+</ion-content>
